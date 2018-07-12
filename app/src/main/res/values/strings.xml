@@ -1,8 +1,19 @@
 <resources>
     <string name="app_name">FutureComes</string>
 
+    <string name="server_url">http://192.168.1.145:8080/</string>
+    <!--<string name="server_url">http://192.168.65.2:8080/</string>-->
+
     <string name="to">До</string>
     <string name="from">От</string>
+
+    <string name="calculate">Рассчитать</string>
+    <string name="minimum">Минимум</string>
+    <string name="maximum">Максимум</string>
+    <string name="average">Среднее значение</string>
+    <string name="median">Медиана</string>
+    <string name="interquartile_range">Интерквартильный размах</string>
+
     <string name="error_calculate_interval">Не удалось рассчитать текущий интервал</string>
     <string name="error_loading_data">"Не удалось загрузить данные\nПроверьте связь с сервером"</string>
 </resources>

@@ -17,10 +17,8 @@ import javax.inject.Singleton
 
 
 @Module
-class NetworkModule {
+class NetworkModule(private val baseUrl:String) {
 
-//    private var mBaseUrl = " http://192.168.65.2:8080/"
-    private var mBaseUrl = " http://192.168.1.145:8080/"
 
     @Provides
     @Singleton
@@ -61,7 +59,7 @@ class NetworkModule {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
-                .baseUrl(mBaseUrl)
+                .baseUrl(baseUrl)
                 .build()
     }
 

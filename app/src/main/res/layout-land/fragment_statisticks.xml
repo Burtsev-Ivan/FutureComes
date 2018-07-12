@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:onClick="@{() -> viewmodel.loadData()}"
-            android:text="Рассчитать"
+            android:text="@string/calculate"
             android:textAllCaps="false"
             style="@style/Widget.AppCompat.Button.Colored"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +125,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Минимум" />
+                        android:text="@string/minimum" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -143,7 +143,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Максимум" />
+                        android:text="@string/maximum" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -160,7 +160,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Среднее значение" />
+                        android:text="@string/average" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -177,7 +177,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Медиана" />
+                        android:text="@string/median" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -194,7 +194,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Интерквартильный размах" />
+                        android:text="@string/interquartile_range" />
 
                     <TextView
                         android:layout_width="0dp"
