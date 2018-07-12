@@ -18,18 +18,33 @@
         android:layout_height="match_parent"
         tools:context=".statistics.StatisticsFragment">
 
-        <com.github.mikephil.charting.charts.CombinedChart
-            android:id="@+id/combinedChart"
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
+            android:padding="50dp"
+            android:src="@drawable/ic_line_graph"
+            android:visibility="@{viewmodel.isIntervalLoading() ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.5"
-            app:graph="@{viewmodel.timeInterval}"/>
+            app:layout_constraintWidth_percent="0.5" />
+
+        <com.github.mikephil.charting.charts.CombinedChart
+            android:id="@+id/combinedChart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:visibility="@{viewmodel.isIntervalLoading() ? View.VISIBLE: View.INVISIBLE }"
+            app:graph="@{viewmodel.timeInterval}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
 
         <TextView
             android:id="@+id/text_date_from"
@@ -49,12 +64,14 @@
             android:id="@+id/hyphen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="-"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_date_to"
             app:layout_constraintEnd_toStartOf="@+id/text_date_to"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/text_date_from"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/text_date_to" />
 
         <TextView
             android:id="@+id/text_date_to"
@@ -78,12 +95,13 @@
             android:onClick="@{() -> viewmodel.loadData()}"
             android:text="Рассчитать"
             android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Colored"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/combinedChart"
             app:layout_constraintTop_toBottomOf="@+id/text_date_to" />
 
-        <TableLayout
-            android:id="@+id/tableLayout"
+        <ScrollView
+            android:id="@+id/scroll_table"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -93,93 +111,101 @@
             app:layout_constraintStart_toEndOf="@+id/combinedChart"
             app:layout_constraintTop_toBottomOf="@+id/button_calculate">
 
-            <TableRow android:paddingBottom="5dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Минимум" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{viewmodel.min}" />
-            </TableRow>
+                <TableRow
+                    android:background="@drawable/border_table_background"
+                    android:paddingBottom="5dp">
 
-            <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Минимум" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{viewmodel.min}" />
+                </TableRow>
+
+                <TableRow android:background="@drawable/border_table_background">
 
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Максимум" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Максимум" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{viewmodel.max}" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{viewmodel.max}" />
+                </TableRow>
 
-            <TableRow>
+                <TableRow android:background="@drawable/border_table_background">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Среднее значение" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Среднее значение" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{viewmodel.average}" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{viewmodel.average}" />
+                </TableRow>
 
-            <TableRow>
+                <TableRow android:background="@drawable/border_table_background">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Медиана" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Медиана" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{viewmodel.median}" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{viewmodel.median}" />
+                </TableRow>
 
-            <TableRow>
+                <TableRow android:background="@drawable/border_table_background">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Интерквартильный размах" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Интерквартильный размах" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{viewmodel.interquartileRange}" />
-            </TableRow>
-        </TableLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{viewmodel.interquartileRange}" />
+                </TableRow>
+            </TableLayout>
 
+        </ScrollView>
 
     </android.support.constraint.ConstraintLayout>
 

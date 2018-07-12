@@ -2,8 +2,6 @@ package ru.burtsev.futurecomes.statistics
 
 import android.databinding.BindingAdapter
 import com.github.mikephil.charting.charts.CombinedChart
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.CombinedData
 import com.github.mikephil.charting.data.Entry
@@ -25,7 +23,6 @@ object GraphBindings {
             try {
                 val toList = timeInterval.interval.keys.toList()
                 return@setValueFormatter toList[Math.ceil(value.toDouble()).toInt()]
-//                return@setValueFormatter value.toString()
             } catch (e: Exception) {
                 return@setValueFormatter ""
             }
@@ -42,6 +39,7 @@ object GraphBindings {
         lineSet.setDrawValues(false)
         lineSet.setDrawCircles(false)
         lineSet.axisDependency = YAxis.AxisDependency.LEFT
+        lineSet.mode = LineDataSet.Mode.CUBIC_BEZIER
 
         val lineData = LineData()
         lineData.addDataSet(lineSet)

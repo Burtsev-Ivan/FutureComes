@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.github.mikephil.charting.components.XAxis
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_statisticks.*
@@ -37,6 +38,12 @@ class StatisticsFragment : DaggerFragment() {
             dialog.show()
         })
 
+        viewModel.messageError.observe(this, Observer {
+            it?.let {
+                Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+            }
+        })
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +66,7 @@ class StatisticsFragment : DaggerFragment() {
         combinedChart.description = null
         combinedChart.legend.isEnabled = false
 
-        combinedChart.setTouchEnabled(false)
+        combinedChart.setTouchEnabled(true)
         combinedChart.isDragEnabled = true
         combinedChart.setScaleEnabled(true)
         combinedChart.isScaleXEnabled = true

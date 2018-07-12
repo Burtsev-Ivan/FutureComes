@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">FutureComes</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="to">До</string>
     <string name="from">От</string>
+    <string name="error_calculate_interval">Не удалось рассчитать текущий интервал</string>
+    <string name="error_loading_data">"Не удалось загрузить данные\nПроверьте связь с сервером"</string>
 </resources>
