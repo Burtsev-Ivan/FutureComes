@@ -10,6 +10,9 @@ class TimeCharacteristics {
     var interquartileRange: Int? = null
 
     companion object {
+        /**
+         * Вычисляет все требуемые характеристики временного ряда за минимальное количество проходов
+         */
         fun calculate(timeInterval: TimeInterval): Single<TimeCharacteristics> {
             return Single.fromCallable {
                 val timeCharacteristics = TimeCharacteristics()

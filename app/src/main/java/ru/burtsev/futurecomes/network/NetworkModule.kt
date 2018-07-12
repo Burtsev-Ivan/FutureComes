@@ -46,9 +46,7 @@ class NetworkModule(private val baseUrl:String) {
     @Provides
     @Singleton
     internal fun provideGson(): Gson {
-        return GsonBuilder()
-//                .registerTypeAdapter(Countries::class.java, CountriesTypeAdapter())
-                .create()
+        return GsonBuilder().create()
     }
 
 
@@ -65,17 +63,9 @@ class NetworkModule(private val baseUrl:String) {
 
     @Provides
     @Singleton
-//    @Named("repoProd")
     internal fun provideRepository(serviceApi: ServiceApi): Repository {
         return RepositoryImpl(serviceApi)
     }
-//
-//    @Provides
-//    @Singleton
-//    @Named("repoTest")
-//    internal fun provideRepositoryTest(context: Context, gson: Gson): Repository {
-//        return RepositoryTestImpl(context, gson)
-//    }
 
     @Provides
     @Singleton

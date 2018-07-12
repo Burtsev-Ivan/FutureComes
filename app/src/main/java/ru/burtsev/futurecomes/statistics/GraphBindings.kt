@@ -14,15 +14,19 @@ import java.util.*
 
 object GraphBindings {
 
+    /**
+     * Рисует график из timeInterval в combinedChart
+     */
     @BindingAdapter("app:graph")
     @JvmStatic
-    fun setTree(combinedChart: CombinedChart, timeInterval: TimeInterval?) {
+    fun setTimeInterval(combinedChart: CombinedChart, timeInterval: TimeInterval?) {
         combinedChart.clear()
         if (timeInterval == null || timeInterval.interval.isEmpty()) return
+        //Подписи по оси X
         combinedChart.xAxis.setValueFormatter { value, axis ->
             try {
-                val toList = timeInterval.interval.keys.toList()
-                return@setValueFormatter toList[Math.ceil(value.toDouble()).toInt()]
+                val xAxisNames = timeInterval.interval.keys.toList()
+                return@setValueFormatter xAxisNames[Math.ceil(value.toDouble()).toInt()]
             } catch (e: Exception) {
                 return@setValueFormatter ""
             }
