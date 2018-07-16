@@ -12,12 +12,14 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.burtsev.futurecomes.Repository
 import ru.burtsev.futurecomes.RepositoryImpl
+import ru.burtsev.futurecomes.TestRepositoryImpl
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 
 @Module
-class NetworkModule(private val baseUrl:String) {
+class NetworkModule(private val baseUrl: String) {
 
 
     @Provides
@@ -63,8 +65,16 @@ class NetworkModule(private val baseUrl:String) {
 
     @Provides
     @Singleton
-    internal fun provideRepository(serviceApi: ServiceApi): Repository {
+    @Named("RepoProd")
+    internal fun provideProdRepository(serviceApi: ServiceApi): Repository {
         return RepositoryImpl(serviceApi)
+    }
+
+    @Provides
+    @Singleton
+    @Named("RepoTest")
+    internal fun provideTestRepository(): Repository {
+        return TestRepositoryImpl()
     }
 
     @Provides

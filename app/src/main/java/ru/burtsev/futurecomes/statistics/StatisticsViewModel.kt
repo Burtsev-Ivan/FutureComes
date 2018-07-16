@@ -14,9 +14,10 @@ import ru.burtsev.futurecomes.data.TimeInterval
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Named
 
 
-class StatisticsViewModel @Inject constructor(val repository: Repository) : ViewModel() {
+class StatisticsViewModel @Inject constructor(@Named("RepoTest") val repository: Repository) : ViewModel() {
 
     private val simpleDateFormat: SimpleDateFormat by lazy {
         SimpleDateFormat("dd.MM.yyyy")
