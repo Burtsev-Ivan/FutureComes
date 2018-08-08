@@ -6,7 +6,7 @@ import android.databinding.ObservableField
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.burtsev.futurecomes.R
-import ru.burtsev.futurecomes.Repository
+import ru.burtsev.futurecomes.statistics.repository.Repository
 import ru.burtsev.futurecomes.SingleLiveEvent
 import ru.burtsev.futurecomes.data.SelectedDate
 import ru.burtsev.futurecomes.data.TimeCharacteristics

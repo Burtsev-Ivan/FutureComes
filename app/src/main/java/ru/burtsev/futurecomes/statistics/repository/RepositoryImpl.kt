@@ -1,4 +1,4 @@
-package ru.burtsev.futurecomes
+package ru.burtsev.futurecomes.statistics.repository
 
 import io.reactivex.Single
 import ru.burtsev.futurecomes.data.TimeInterval
